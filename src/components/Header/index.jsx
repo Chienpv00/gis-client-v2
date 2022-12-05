@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { HeaderStyled } from './styled';
 import Logo from '~/global/logoUIT.svg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
     const [active, setActive] = useState([true, false]);
@@ -30,7 +30,11 @@ const Header = () => {
                 </div>
             </div>
             <div>
-                <button className="btn btn-dark">Đăng nhập</button>
+                <button className="btn btn-dark">
+                    <NavLink to={'/login'} className="text-decoration-none">
+                        <span className="text-light">Đăng nhập</span>
+                    </NavLink>
+                </button>
             </div>
         </div>
     );
