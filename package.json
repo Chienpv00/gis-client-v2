@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@arcgis/core": "^4.25.5",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@esri/react-arcgis": "^5.2.0",
@@ -11,6 +12,8 @@
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "bootstrap": "^5.2.3",
+        "connect-api-mocker": "^1.10.0",
+        "cors": "^2.8.5",
         "esri-loader": "^3.7.0",
         "jquery": "^3.6.1",
         "popper.js": "^1.16.1",
