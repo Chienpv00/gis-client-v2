@@ -5,10 +5,20 @@ import { data } from './data';
 import { useEffect, useRef } from 'react';
 import { StyledMap } from './styled';
 
-const UITMap = () => {
+// Define interface
+interface IUITMap {
+    props: any;
+}
+
+/**
+ * Component UITMap
+ * @params props: any
+ * @returns JSX.Element
+ */
+const UITMap = ({ props }: IUITMap) => {
     const viewDiv = useRef(null);
     useEffect(() => {
-        if (viewDiv.current) {      
+        if (viewDiv.current) {
             const map = new Map({
                 basemap: 'topo-vector',
                 ground: 'world-elevation',
