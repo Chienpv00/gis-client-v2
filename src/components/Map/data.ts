@@ -1,8 +1,9 @@
+import { getUrl } from "~/helper";
 import { DefaultColors } from "./styled";
 
 export const data = [
     {
-        url: "http://localhost:8080/api/stair",
+        url: getUrl("getStairAPI"),
         size: 0.15,
         color: DefaultColors.White,
     },

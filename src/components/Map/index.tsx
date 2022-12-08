@@ -7,7 +7,7 @@ import { StyledMap } from './styled';
 
 // Define interface
 interface IUITMap {
-    props: any;
+    props?: any;
 }
 
 /**
