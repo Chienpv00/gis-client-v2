@@ -1,4 +1,4 @@
-import { getUrl } from "~/helper";
+import { getUrl } from "../../helper/index";
 import { DefaultColors } from "./styled";
 
 export const data = [
