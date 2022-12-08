@@ -8,12 +8,12 @@ export const data = [
         color: DefaultColors.White,
     },
     {
-        url: "http://localhost:8080/api/datacol2",
+        url: getUrl("getDataCol2API"),
         size: 0.5,
         color: DefaultColors.Black,
     },
     {
-        url: "http://localhost:8080/api/tang123",
+        url: getUrl("getTang123API"),
         size: 6,
         color: DefaultColors.White,
     },
