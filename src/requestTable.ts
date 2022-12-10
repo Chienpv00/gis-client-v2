@@ -1,7 +1,7 @@
-const BFF = "http://localhost:8080/api";
+const BFF_URL = "http://localhost:8080/api";
 
-export const requestTable: any = {
-    "getStairAPI": `${BFF}/stair`,
-    "getDataCol2API": `${BFF}/datacol2`,
-    "getTang123API": `${BFF}/tang123`,
+export const requestTable = {
+    getStairAPI: `${BFF_URL}/stair`,
+    getDataCol2API: `${BFF_URL}/datacol2`,
+    getTang123API: `${BFF_URL}/tang123`,
 };
