@@ -1,6 +1,7 @@
 import GeoJSONLayer from '@arcgis/core/layers/GeoJSONLayer';
 import SceneView from '@arcgis/core/views/SceneView';
 import Map from '@arcgis/core/Map';
+import { loadModules } from 'esri-loader';
 import { data } from './data';
 import { useEffect, useRef, useState } from 'react';
 import { StyledMap } from './styled';
@@ -32,16 +33,31 @@ const UITMap = ({ props }: IUITMap) => {
                 (err) => {}
             );
 
-        if (viewDiv.current) {
+        loadModules(
+            [
+                'esri/Map',
+                'esri/views/SceneView',
+                'esri/layers/GeoJSONLayer',
+                'esri/layers/SceneLayer',
+                'esri/layers/GraphicsLayer',
+                'esri/Graphic',
+                'esri/request',
+            ],
+            {
+                css: true,
+            }
+        ).then(([Map, SceneView, GeoJSONLayer, SceneLayer, GraphicsLayer, Graphic, esriRequest]) => {
+            const geojsonLayer = new GeoJSONLayer({
+                url: './data.geojson',
+            });
             const map = new Map({
                 basemap: 'topo-vector',
                 ground: 'world-elevation',
+                layers: [geojsonLayer], //end layers
             });
 
-        
-            if (value.length) {
-                const geojsonLayerArr = new Array(value.length);
-                value.map((item:any,index) => { 
+            if (value.length && viewDiv.current) {
+                value.map((item: any, index) => {
                     const blob = new Blob([JSON.stringify(item.data)], {
                         type: 'application/json',
                     });
@@ -49,60 +65,38 @@ const UITMap = ({ props }: IUITMap) => {
                     const geojsonLayer = new GeoJSONLayer({
                         url,
                     });
-                    const x:any = {
-                        type: "simple",
+                    const x: any = {
+                        type: 'simple',
                         symbol: {
-                            type: "polygon-3d",
+                            type: 'polygon-3d',
                             symbolLayers: [
                                 {
-                                    type: "extrude",
+                                    type: 'extrude',
                                     size: Number(item.size),
                                     material: {
-                                        color: item.color || "#fff",
+                                        color: item.color || '#fff',
                                     },
                                 },
                             ],
-                        }
-                    }
+                        },
+                    };
                     geojsonLayer.renderer = x;
                     map.layers.add(geojsonLayer);
-                })
+                });
             }
-
-            // data.forEach((item) => {
-            //     const geojsonLayer = new GeoJSONLayer({
-            //         url: item.url,
-            //     });
-            //     geojsonLayer.renderer = {
-            //         type: 'simple',
-            //         symbol: {
-            //             type: 'polygon-3d',
-            //             symbolLayers: [
-            //                 {
-            //                     type: 'extrude',
-            //                     size: item.size,
-            //                     material: {
-            //                         color: item.color,
-            //                     },
-            //                 },
-            //             ],
-            //         },
-            //     } as any;
-            //     map.layers.add(geojsonLayer);
-            // });
 
             const view = new SceneView({
                 container: viewDiv.current,
                 map: map,
                 camera: {
                     position: [106.80155361294294, 10.87203569911929, 150],
-                    heading: 0,
+                    heading: 155,
                     tilt: 75,
-                } as any,
+                },
             });
 
             view.popup.defaultPopupTemplateEnabled = true;
-        }
+        });
     }, [status]);
 
     return <StyledMap ref={viewDiv}></StyledMap>;
