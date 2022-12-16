@@ -8,7 +8,7 @@ const Layout = () => {
             <div>
                 <Header />
             </div>
-            <div className="container-fluid">
+            <div className="container-fluid p-0">
                 <Outlet />
             </div>
         </div>
