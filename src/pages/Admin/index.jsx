@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const Admin = () => {
     const [value, setValue] = useState(0);
-    const [file, setFile] = useState('');
+    const [file, setFile] = useState();
     const handleChange = (event) => {
         setValue(event.target.value);
     };
@@ -16,16 +16,16 @@ const Admin = () => {
     };
 
     return (
-        <div className="">
-            <Select onChange={handleChange} value={value} displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
+        <div className="m-auto text-center mt-5">
+            {/* <Select onChange={handleChange} value={value} displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
                 <MenuItem value={0}>Tòa E</MenuItem>
                 <MenuItem value={1}>Tòa A</MenuItem>
                 <MenuItem value={2}>Tòa B</MenuItem>
                 <MenuItem value={3}>Tòa C</MenuItem>
-            </Select>
+            </Select> */}
 
             <Button className="ms-5" variant="contained" component="label">
-                Tải lên file JSON
+                {file ? file : 'Tải lên file JSON'}
                 <input
                     onChange={(e) => {
                         setFile(e.target.value);
